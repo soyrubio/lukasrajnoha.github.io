@@ -1,0 +1,65 @@
+@import "_settings";
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translate(0, 200px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fadeInLeft {
+  0% {
+
+    opacity: 0;
+    transform: translate(-200px, 0);
+  }
+
+  100% {
+
+    opacity: 1;
+    transform: translate(0,0);
+  }
+}
+
+.animated-scene {
+  .scene-element {
+    animation-duration: $speed;
+    transition-timing-function: ease-in;
+    animation-fill-mode: both;
+
+  }
+
+  .scene-element--fadein {
+    animation-name: fadeIn;
+  }
+
+  .scene-element--fadeinup {
+    animation-name: fadeInUp;
+  }
+
+  .scene-element--fadeinleft {
+    transform: translate(0,0);
+    animation-name: fadeInLeft;
+  }
+   &.is-exiting {
+      .scene-element {
+        animation-direction: alternate-reverse;
+      }
+  }
+}
+

@@ -1,0 +1,103 @@
+<html>
+   <head>
+      <link type="text/css" href="assets/css/bootstrap/bootstrap.min.css" rel="stylesheet">
+      <link type="text/css" href="assets/css/style.css" rel="stylesheet">
+      <link type="text/css" href="assets/css/page_transitions.css" rel="stylesheet">
+      <link type="text/css" href="../assets/header.css" rel="stylesheet">
+      <script src="assets/js/jquery/jquery-3.5.1.min.js"></script>
+      <script src="assets/js/settings.js"></script>
+      <script src="assets/js/sudoku.js"></script>
+      <script src="assets/js/tile.js"></script>
+      <script src="assets/js/sudoku_board.js"></script>
+      <script src="assets/js/game.js"></script>
+   </head>
+   <body>
+      <div id="header" class="position-relative">
+         <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+               <a class="navbar-brand" href="#">LR</a>
+               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+               </button>
+               <div class="collapse navbar-collapse" id="navbarNav">
+                  <div class="navbar-nav ml-auto">
+                     <a class="nav-item nav-link pl-4 mr-2" href="../index.html">INDEX</a>
+                     <a class="nav-item nav-link pl-4 mr-2" href="../rain/index.html">RAIN</span></a>
+                     <a class="nav-item nav-link pl-4 mr-2 active" href="#">SUDOKU <span class="sr-only">(current)</span></a>
+                  </div>
+               </div>
+            </nav>
+         </div>
+      </div>
+      <div id="main-body">
+         <div class="container animated-scene" id="main">
+            <div class="row" style="z-index: 998">
+               <div class="col-md-4 d-none d-md-flex" style="align-items:center;">
+                  <div class="jumbo scene-element scene-element--fadeinleft">
+                     <h2><span class="underline-color font-secondary">COLOROKU</span></h2>
+                     <p>
+                        Sudoku with a <span class="font-weight-bold">colorful</span> twist! <br><br>
+                        Instead of numbers, <b>coloroku</b> contains various colors:
+                     </p>
+                     <div class="colors-showcase mb-3">
+                        <div class="color-box bg-color-1"></div>
+                        <div class="color-box bg-color-2"></div>
+                        <div class="color-box bg-color-3"></div>
+                        <div class="color-box bg-color-4"></div>
+                        <div class="color-box bg-color-5"></div>
+                        <div class="color-box bg-color-6"></div>
+                        <div class="color-box bg-color-7"></div>
+                        <div class="color-box bg-color-8"></div>
+                        <div class="color-box bg-color-9"></div>
+                     </div>
+                     <p>
+                        Touch the tiles to choose their color.
+                        <br><br>
+                        <span class="font-secondary">
+                           HAPPY SOLVING
+                           <span class="ml-2">
+                              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-emoji-smile" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                 <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                 <path fill-rule="evenodd" d="M4.285 9.567a.5.5 0 0 1 .683.183A3.498 3.498 0 0 0 8 11.5a3.498 3.498 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.498 4.498 0 0 1 8 12.5a4.498 4.498 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683z"/>
+                                 <path d="M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z"/>
+                              </svg>
+                           </span>
+                        </span>
+                     </p>
+                     <p id="messages-container" class="justify-content-center">
+                     </p>
+                  </div>
+               </div>
+               <div class="col-md-8 justify-content-center scene-element scene-element--fadein">
+                  <div id="sudoku-game" class="mx-auto sudoku-container">
+                     <div class="sudoku">
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div id="sudoku-controls-container">
+               <div id="sudoku-controls">
+                  <div class="sudoku-control bg-color-1" data-controlid="1"></div>
+                  <div class="sudoku-control bg-color-2" data-controlid="2"></div>
+                  <div class="sudoku-control bg-color-3" data-controlid="3"></div>
+                  <div class="sudoku-control bg-color-4" data-controlid="4"></div>
+                  <div class="sudoku-control bg-color-5" data-controlid="5"></div>
+                  <div class="sudoku-control bg-color-6" data-controlid="6"></div>
+                  <div class="sudoku-control bg-color-7" data-controlid="7"></div>
+                  <div class="sudoku-control bg-color-8" data-controlid="8"></div>
+                  <div class="sudoku-control bg-color-9" data-controlid="9"></div>
+               </div>
+               <div id="sudoku-controls-backdrop">
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="footer">
+      	<div class="container position-relative text-muted">
+      		<hr>
+      		<small>Still in development / Made with Bootstrap, JQuery, and <a href="https://github.com/robatron/sudoku.js"><u>sudoku.js</u></a></small>
+      	</div>
+      	
+      </div>
+   </body>
+</html>

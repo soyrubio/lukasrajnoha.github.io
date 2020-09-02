@@ -1,0 +1,299 @@
+@import "_settings";
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap');
+
+
+$colors: (
+	1: $color-1,
+	2: $color-2,
+	3: $color-3,
+	4: $color-4,
+  5: $color-5,
+	6: $color-6,
+	7: $color-7,
+	8: $color-8,
+	9: $color-9,
+);
+
+@each $n, $color-value in $colors {
+  .bg-color-#{$n}, .tile[data-currentnumber = "#{$n}"] .tile-dot {
+    background-color: $color-value !important;
+  } 
+
+  .sudoku-control[data-controlid = "#{$n}"]:hover {
+    border: 0px solid $color-value;
+  }  
+
+}
+
+#header {
+  height: 20vh;
+}
+
+#main-body {
+  height: 60vh;
+}
+
+#footer {
+  margin-top:10vh;
+  height: 10vh;
+}
+
+
+body {
+  color: $color;
+	background: $background;
+}
+
+
+/* JUMBO */
+.jumbo {
+	font-family: 'Playfair Display', serif;
+}
+
+/* SUDOKU BOARD */
+
+.sudoku-container {
+margin:  5vh auto;
+  width:50vh;
+  height: 50vh;
+  border-radius:25px;
+ box-shadow: 12px 12px 16px 0 rgba(0, 0, 0, 0.25),
+   -8px -8px 12px 0 rgba(255, 255, 255, 0.3);
+    box-shadow: 24px 24px 30px 0 rgba(0, 0, 0, 0.15),
+   -16px -16px 32px 0 rgba(255, 255, 255, 0.5);
+   padding:1rem;
+   z-index: 998;
+
+}
+
+/* TILES */
+
+.tile {
+  width: calc(100%/10);
+  height: calc(100%/10);
+  float: left;
+  box-sizing: border-box;
+  border: none;
+  padding: 5px;
+  background: $background;
+
+  &:not(.disabled) .tile-dot {
+	 box-shadow: inset 3px 3px 5px 0 rgba(0, 0, 0, 0.2),
+    inset -3px -3px 5px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  &:not(.disabled):hover .tile-dot {
+  	box-shadow: inset 5px 5px 8px 0 rgba(0, 0, 0, 0.2),
+    inset -5px -5px 8px 0 rgba(255, 255, 255, 0.2) !important;
+  }
+  &.highlight .tile-dot {
+      box-shadow:  3px 3px 5px 0 rgba(0, 0, 0, 0.4),
+     -3px -3px 5px 0 rgba(255, 255, 255, 0.4) !important;
+  }
+
+  &.blank-h {
+  	height: calc(100%/20);
+  }
+  &.blank-w {
+  	width: calc(100%/20);
+  }
+}
+
+.tile.disabled {
+  cursor: default;
+
+}
+
+.tile-dot {
+	height: 100%;
+	width: 100%;
+	border-radius: 8px;
+  transition: box-shadow $animation-speed, opacity $animation-speed;
+}
+
+.sudoku.highlight-active .tile.disabled:not(.highlight) .tile-dot {
+  opacity:0.3;
+}
+
+
+.tile-blank {
+	height: 100%;
+	width: 100%;
+}
+
+/* CONTROLS */
+
+/* https://css-tricks.com/snippets/sass/placing-items-circle/ */
+@mixin on-circle($item-count, $circle-size, $item-size) {
+  position: relative;
+  width:  $circle-size;
+  height: $circle-size;
+  padding: 0;
+  border-radius: 50%; 
+  list-style: none;       
+  
+  > * {
+    display: block;
+    position: absolute;
+    top:  50%; 
+    left: 50%;
+    width:  $item-size;
+    height: $item-size;
+    margin: -($item-size / 2);
+  
+    $angle: (360 / $item-count);
+    $rot: 0;
+
+    @for $i from 1 through $item-count {
+      &:nth-of-type(#{$i}) {
+        transform: 
+          rotate($rot * 1deg) 
+          translate($circle-size / 2) 
+          /*rotate($rot * -1deg)*/;
+      }
+
+      $rot: $rot + $angle;
+    }
+  }
+}
+
+
+
+#sudoku-controls-container {
+	
+	height: 12em;
+	width:12em;
+	position:absolute;
+	display: flex;
+    align-items: center;
+    transition: opacity $animation-speed;
+    :not(.active) {
+      opacity:1;
+    }
+   
+ 
+    transform: translate(-48%, -48.5%);
+    
+    &:not(.active) {
+    	left: 0px !important;
+    	right: 0px !important;
+    	width:0px;
+    	height:0px;
+    }
+
+    
+    #sudoku-controls {
+    	transition-property: transform;
+	 	transition-duration: $animation-speed;
+    	transform: scale(0,0);
+    }
+    &.active {
+	
+		z-index:999;
+		
+	
+		&:not(.exiting) #sudoku-controls {
+			transform: scale(1, 1);
+		}
+	}
+
+
+	
+
+	
+
+}
+
+#sudoku-controls {
+	@include on-circle($item-count: 9, $circle-size: 8em, $item-size: 2em);
+	margin: 0 auto;
+
+	
+}
+
+.sudoku-control {
+  border-radius: 8px;
+  display: block;
+  border: 2px solid $background;
+  box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.2);
+  cursor:pointer;
+	transition: transform $animation-speed, border $animation-speed;
+  &.success {
+  	transform: scale(2,2) !important;
+  	border: 0px solid $background;
+  }
+}
+
+
+.color-box {
+	border-radius: 8px;
+	height: 20px;
+	width:20px;
+	display: inline-block;
+	margin: 5px;
+	box-shadow:  3px 3px 5px 0 rgba(0, 0, 0, 0.2),
+     -3px -3px 5px 0 rgba(255, 255, 255, 0.2);
+}
+
+*:focus {
+    outline: 0 !important;
+}
+
+a {
+  color: $color;
+  svg {
+    transform: translate(0px, 0px);
+    transition: transform $animation-speed;
+  }
+  &:hover {
+    color: $color;
+    text-decoration: none;
+    svg {
+      
+      transform: translate(10px, 0px);
+    }
+  }
+}
+
+
+/* https://codepen.io/Wking/pen/BdmpVx */
+
+.underline-color {
+  background-repeat: no-repeat;
+  background-size: 900% 0.2em;
+  background-position: 0 110%;
+  transition: background-size $animation-speed ease-in-out; 
+  background-image: linear-gradient(
+    270deg, 
+     $color-1,
+     $color-2, 
+     $color-3, 
+     $color-4,
+     $color-5,
+     $color-6,
+     $color-7,
+     $color-8,
+     $color-9);
+  animation: 9s underline-color-animation infinite;
+  &:hover {
+    background-size: 900% 45%;
+  }
+}
+
+@keyframes underline-color-animation {
+  0%{background-position:0% 110%}
+    50%{background-position:100% 110%}
+    100%{background-position:0% 110%}
+}
+
+
+.underline-color {
+  
+
+}
+
+.font-secondary {
+  font-family: 'Fjalla One', sans-serif;
+}
