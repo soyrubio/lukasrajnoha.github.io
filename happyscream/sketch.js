@@ -12,9 +12,11 @@ let canvas;
 let audio;
 let flower;
 let controller;
+let stream;
 
-function setup() {
+async function setup() {
   getAudioContext().suspend();
+  stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
   const height = document.querySelector('.main').offsetHeight;
   const width = document.querySelector('.main').offsetWidth;
   cnv = createCanvas(width, height);

@@ -8,9 +8,9 @@ class Audio {
         this.currentNote = 0;
         this.level = 0;
 
-        this.stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+        
         this.audioContext = new AudioContext();
-        this.mediaStreamAudioSourceNode = audioContext.createMediaStreamSource(this.stream);
+        this.mediaStreamAudioSourceNode = audioContext.createMediaStreamSource(stream);
         this.analyserNode = audioContext.createAnalyser();
         mediaStreamAudioSourceNode.connect(this.analyserNode);
         this.pcmData = new Float32Array(analyserNode.fftSize);
