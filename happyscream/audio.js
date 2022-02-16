@@ -8,6 +8,16 @@ class Audio {
         this.currentNote = 0;
         this.level = 0;
 
+        this.stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+        this.audioContext = new AudioContext();
+        this.mediaStreamAudioSourceNode = audioContext.createMediaStreamSource(this.stream);
+        this.analyserNode = audioContext.createAnalyser();
+        mediaStreamAudioSourceNode.connect(this.analyserNode);
+        this.pcmData = new Float32Array(analyserNode.fftSize);
+const onFrame = () => {
+            
+        };
+
         userStartAudio();
         this.audioContext = getAudioContext();
         this.mic = new p5.AudioIn();
@@ -52,7 +62,13 @@ class Audio {
     }
 
     updateLevel = () => {
-        const level = this.mic.getLevel();
+
+        this.analyserNode.getFloatTimeDomainData(this.pcmData);
+        let sumSquares = 0.0;
+        for (const amplitude of this.pcmData) { sumSquares += amplitude*amplitude; }
+        const level = Math.sqrt(sumSquares / this.pcmData.length);
+
+        //const level = this.mic.getLevel();
         this.runningLevel[this.runningLevelIndex] = level;
         this.runningLevelIndex += 1;
         this.runningLevelIndex %= AUDIO_RUNNING_AVERAGE_LENGTH;
