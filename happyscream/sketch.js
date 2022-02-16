@@ -14,6 +14,7 @@ let flower;
 let controller;
 
 function setup() {
+  getAudioContext().suspend();
   const height = document.querySelector('.main').offsetHeight;
   const width = document.querySelector('.main').offsetWidth;
   cnv = createCanvas(width, height);
@@ -32,6 +33,10 @@ function setup() {
   noLoop();
 
   controller = new FlowerController(flowerSettings);
+}
+
+function mousePressed() {
+  userStartAudio();
 }
 
 function draw() {
