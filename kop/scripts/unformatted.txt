@@ -1,0 +1,239 @@
+Reprezentace stavu v tabu prohledávání je cesta v grafu. Dlouhodobá paměť dává četnost použití každého uzlu v kandidátní cestě. Tah dostane pokutu, jestliže tato četnost je vyšší než průměr. Dlouhodobá paměť však obsahuje hash všech navštívených cest. Pokud se jedná o úplně novou cestu, tabu je prolomeno. Toto poslední opatření je
+.diverzifikace
+intenzifikace
+.Aspirace
+
+Reprezentace stavu v tabu prohledávání je hamiltonova kružnice v grafu. Tah je dvojzáměna na hranách (odebereme z kružnice dvě hrany a přidáme dvě jiné tak, aby výsledek byla opět hamiltonova kružnice).  Uvažujeme, že jako tabu atribut použijeme a) výslednou dvojici hran, b) celou záměnu (obě dvojice). Možnost a)
+.dá větší diverzifikaci
+dá větší intenzifikaci
+.více omezí aktuální okolí
+
+Typická úloha aspiračních kritérií je
+diverzifikace
+.intenzifikace
+omezení okolí
+
+Tabu prohledávání konverguje velmi pomalu, i když s dobrými výsledky. K nápravě
+.přidáme aspirační kritérium, spuštěné dosud nejlepším řešením
+přidáme aspirační kritérium, spuštěné malou frekvencí atributů tahu
+k optimalizačnímu kritériu přidáme odměnu za malou frekvenci atributů
+
+Tabu prohledávání často končí v lokálním optimu. K nápravě
+zkrátíme tabu lhůtu
+.prodloužíme tabu lhůtu
+.přidáme aspirační kritérium, spouštěné malou frekvencí atributů tahu
+.k optimalizačnímu kritériu přidáme odměnu za malou frekvenci atributů tahu
+při detekci uváznutí, spustíme výpočet znovu od nejlepšího dosaženého řešení
+.při detekci uváznutí, spustíme výpočet znovu od náhodného řešení
+
+Metoda prohledávání okolí v tabu prohledávání je
+prvé zlepšení nebo akceptovatelné zhoršení
+pouze nejlepší
+
+Tabu prohledávání používá při transformaci metodu
+.pouze nejlepší
+prvé zlepšení
+prvé zlepšení   zhoršení
+nejlepší nejdříve
+
+Evoluční programování pracuje nad
+stromovou reprezentací programu
+.reprezentací automatu
+lineární reprezentací strojového kódu
+orientovaným acyklickým grafem datových závislostí
+
+Evoluční strategie pracuje nad reprezentací
+.vektoru reálných čísel a odchylek
+rozkladového stromu výrazu
+binárního řetězu
+Automatu
+
+Podle teorie stavebních bloků 2023
+složitější schémata (vyššího řádu) přežívají lépe
+.schémata, jejichž proměnné jsou rozptýleny po celém genotypu, přežívají hůře
+.mutace zhoršuje přežívání všech schémat (i když ne všech stejně)
+.uvažované jednobodové křížení má za následek závislost přežívání na délce schématu
+
+Genetické programování pracuje nad reprezentací
+vektoru reálných čísel
+.rozkladu stromu
+binárního řetězce
+Automatu
+
+Máte experimentálně vyhodnotit, zda algoritmus, který automaticky udržuje řízení údržby selekční tlak v genetickém algoritmu, pracuje uspokojivě. Provedete následující:
+Budete měřit četnost mutace v závislosti na poměrné zdatnosti.
+.Budete měřit četnost výběru (selekce) v závislosti na poměrné zdatnosti.
+Pro každou velikost instance zvolíte jednu instanci.
+Zvolíte jednu velikost instance a použijete instance rozdílné obtížnosti.
+
+Genetický algoritmus tvoří novou generaci stylem u+l, tj. ke generaci o u jedincích se přidá l nových a z celku se vybere opět u jedinců. Pro u = l = 1 je tento algoritmus vlastně 2023
+metodou pouze nejlepší
+.metodou prvé zlepšení
+náhodná procházka
+
+Máte genetický algoritmus a svou teorii ohledně vlastností instance, jak ji ověříte?
+Vygeneruji instance s danou vlastností a nad nimi spustím genetický algoritmus
+.Algoritmus spustím opakovaně nad instancemi
+.Vygeneruji jak malé, tak velké instance a nad nimi spustím algoritmus
+
+V genetickém algoritmu je třeba urychlit konvergenci. Možností je upravit pravděpodobnost mutace nebo zvýšit selekční tlak. Platí:
+.přednostně zvýšíme selekční tlak, pracujeme s minimální potřebnou mutací
+přednostně zvýšíme pravděpodobnost mutace
+pokud zvýšíme selekční tlak, může být potřeba o něco zvýšit i pravděpodobnost mutace, abychom se vyhnuli divergenci
+.změna selekčního mechanismu nemá významný vliv, pokud zachováme selekční tlak
+
+Algoritmus, který má za běhu upravovat selekční tlak v genetickém algoritmu s výběrem ruletou, může přímo nastavovat
+.konstantní převod ranku (pořadí zdatnosti) na pravděpodobnost výběru
+.konstanty lineárního škálování
+pravděpodobnost aplikace operátoru „cut and splice“
+
+Volba selekčního tlaku v genetických algoritmech
+.je omezena hrozbou divergence při malém selekčním tlaku
+.závisí na obtížnosti instance, obtížnější instance vyžadují pomalejší konvergenci
+.může vyžadovat odpovídající nastavení pravděpodobnosti funkce
+
+Když zvýšíme selekční tlak, zvýší se intenzifikace?
+.Ano
+Ne
+
+Zvýšení selekčního tlaku může způsobit
+.degeneraci
+.zrychlení konvergence
+divergenci
+.ztrátu diverzity
+
+Změna parametrů lineárního škálování, která má za následek zvětšení poměru zdatnosti nejlepšího a nejhoršího jedince v genetických algoritmech způsobí diverzifikaci
+ano
+.ne – způsobí intenzifikaci, protože slabší odpadnou
+Zvýšení mutace může způsobit
+degeneraci
+zrychlení konvergence
+.divergenci
+ztrátu diverzity
+zvýšenie intenzifikácie
+.zvýšenie diverzity
+
+Zmenšenie turnaja
+.Znižuje intenzifikaci
+.Nezvyšuje selekčný tlak
+
+Genetické operátory Fast Messy GA algoritmu pracují nad
+Genetické operátory Fast Messy GA algoritmu pracují nad
+reprezentací individua
+zdatností individua
+.množinami hodnot genů
+.reprezentací individua, kde některé geny nejsou ohodnoceny a některé jsou ohodnoceny víckrát
+
+Genetické operátory Fast Messy GA algoritmu pracují s 2023
+reprezentací individua
+.podmnožinami genů
+fenotypem individua
+zdatností individua 
+
+Základní metodou vyhodnocení, se kterou pracuje Fast Messy genetický algoritmus, je
+stanovení fenotypu přímo z hodnot genů daného jedince a následný výpočet zdatnosti
+výpočet odlišnosti genotypu jedince od referenčního jedince
+založena na průměrné délce fragmentu v dané generaci
+.dosazení hodnot fragmentů do referenčního jedince a výpočet jeho zdatnosti
+
+Stavební bloky ve Fast Messy GA se generují     
+.jako podmnožiny ohodnocených genů zadané délky
+jako reprezentace počáteční populace
+jako fenotyp individua
+jako podmnožiny genů zadaného referenčního individua 
+
+Vnější cyklus fmGA postupně zvyšuje
+složitost referenčního individua
+.cílovou velikost fragmentů po generování
+délku referenčního individua
+selekční tlak
+
+Referenční jedinec v fmGA
+.slouží pro vyhodnocení zdatnosti
+slouží pro konstrukci stochastického modelu
+při použití, jeho proměnné nahrazují proměnné fragmentů genetické informace 
+.při použití, jeho proměnné jsou nahrazovány proměnnými fragmentů genetické informace
+
+Vyhodnocení zdatnosti ve Fast Messy GA algoritmu je založeno na: 2023
+reprezentaci individua
+.výpočtu, který pomocí dalších informací vrátí zdatnost libovolné podmnožiny genů
+fenotypu individua
+.použití referenčního individua
+
+Máte experimentálně vyhodnotit, zda chování algoritmu, který automaticky nastavuje počáteční teplotu simulovaného ochlazování, odpovídá teorii, kterou jste vymysleli, a která zahrnuje několik parametrů instance. Zajímá vás také, zda tyto parametry stačí k charakterizaci instance z hlediska práce algoritmu.
+.Použijete vygenerované instance se stejnými hodnotami parametrů, o kterých se hovoří ve Vaší teorii, ale různé velikosti.
+.Použijete vygenerované instance s různými hodnotami parametrů, o kterých se hovoří ve Vaší teorii.
+Použijete reprezentativní mix praktických instancí.
+.Výpočet spustíte opakovaně pro každou instanci.
+
+Máte experimentálně vyhodnotit, zda algoritmus, který automaticky nastavuje počáteční teplotu simulovaného ochlazování, pracuje uspokojivě. 
+Zvolíte jeden parametr instancí, o kterých se domníváte, že na počáteční teplotu má vliv, a zkonstruujete zkušební instance.
+Zvolíte velikost instance, na které budete experiment provádět.
+.Použijete instance s rozdílnou hloubkou lokálních minim.
+.Budete sledovat, zda rychlost ochlazování v algoritmu dává přiměřeně rychlou konvergenci pro nastavenou teplotu.
+
+Heuristika, která nastavuje parametry simulovaného ochlazování
+.vždy bude brát v úvahu rozsah optimalizačního kritéria nebo jej normovat
+.pokud zjistí hloubku lokálních minim, dá se tato hodnota využít
+.efekt, dosažený manipulací s hloubkou ekvilibria, se dá dosáhnout manipulací s koeficientem ochlazování
+
+Volba počáteční teploty v simulovaném ochlazování
+.pro dosažení nejlepšího výsledku, může vyžadovat odpovídající volbu koeficientu ochlazování
+.závisí na obtížnosti konkrétní instance
+.závisí na rozsahu optimalizačního kritéria dané instance
+Koncová teplota v simulovaném ochlazování 2023
+je-li dost nízká, určuje, jak velká část stavového prostoru bude prohledávána
+.je-li příliš vysoká, omezuje prohledávanou část stavového prostoru
+vždy musí zůstat konstantní, pokud se mění počáteční teplota
+.dá se s výhodou určovat za běhu sledováním konvergence
+
+Jaká strategie se používá pro výběr souseda u simulovaného ochlazování?
+pouze nejlepší
+prvé zlepšení
+.prvé zlepšení nebo přípustné zhoršení
+nejlepší nejdříve
+
+Zvýšení počtu iterací při konstantní teplotě u SA (equilibrium), odpovídá:
+.zvýšení koeficientu ochlazování
+snížení koeficientu ochlazování
+vztah nelze vyjádřit
+
+Pro praktickou aplikaci kombinatorického optimalizačního problému jste zvolili simulované ochlazování bez adaptačních mechanismů a s pevnou hodnotou koncové teploty. Na většině instancí se optimalizační kritérium nejdříve poněkud zhoršuje a přitom vykazuje náhodné změny, posléze se zlepšuje a náhodné změny se zmenšují. Na převážné části instancí konverguje ke stabilnímu a dobrému řešení. Na zbylých stále zlepšuje opt. kritérium a náhodné změny se zmenšují, ale optimalizační kritérium se nedostane ani ke startovací hodnotě. Na vině je:
+příliš vysoká hodnota počáteční teploty
+příliš nízká hodnota koncové teploty
+.podmínka ukončení, která nedetekuje konvergenci
+příliš nízká hodnota koeficientu ochlazování
+
+Máte experimentálně vyhodnotit, zda randomizovaný plánovací algoritmus, který chcete nasadit do aplikace řízení údržby, pracuje pro toto nasazení uspokojivě. Obtížnost instancí řešených v ostrém nasazení je obtížné odhadnout na základě známých charakteristik.
+.Použijete přednostně instance „nachytané“ při předchozím manuálním řízení.
+Použijete přednostně instance vygenerované se známými vlastnostmi.
+Použijete větší počet lehkých instancí k urychlení.
+.Výpočet spustíte opakovaně pro každou instanci.
+
+Srovnáváte dva deterministické algoritmy A a B, za účelem teoretického poznání závislosti počtu kroků na velikosti instance. Pro algoritmus B, různé instance jedné velikosti vykazují velký rozptyl v počtu kroků. 2023
+Počet kroků pro algoritmus B zprůměrujete, protože rozptyl není součástí hodnocení.
+.Zjistíte statistické rozložení počtu kroků a pokud je symetrické, použijete průměr.
+.Zjistíte statistické rozložení počtu kroků pro oba algoritmy a vyhodnotíte, zda se překrývají a jak mnoho.
+.Pokusíte se zjistit, jaká další charakteristika instancí má vliv na počet kroků.
+
+Zjišťujete vliv parametru randomizované lokální iterativní heuristiky na kvalitu výsledku. Provedli jste jeden běh algoritmu na více instancích pro každou hodnotu parametru. Výsledná závislost je zcela chaotická, přestože by k tomu tak být nemělo.
+Je to důkaz, že kvalita na parametru nezávisí.
+.Použijete vizualizaci vývoje ceny, abyste zjistili, zda jiné parametry nejsou zcela nevhodně nastaveny.
+.Algoritmus spouštíte opakovaně na každé instanci.
+.Pokud to není domácí úkol, použijete statistické testy významnosti, abyste zjistili potřebný počet opakování. 
+
+Relaxace v iterativních lokálních heuristikách 2023
+nezávisí na vlastnostech konkrétní konfigurace, vyjadřuje pouze fakt, že řešením není
+zhoršuje dosažitelnost ve stavovém prostoru
+.zlepšuje dosažitelnost ve stavovém prostoru
+spočívá v použití snadných instancí pro závěrečné vyhodnocení
+spočívá v použití malých instancí
+v případě 3-SAT, spočívá ve snížení počtu klauzulí instance
+.má za úkol vést iterace od konfigurací, které řešením nejsou, k řešením
+má za úkol opravit konfiguraci tak, aby byla řešením
+přiřazuje všem konfiguracím, které nejsou řešením, hodnotu konstantní pro danou instanci
+.typicky nahrazuje optimalizační kritérium heuristickou kombinací původního opt. kritéria a odhadu vzdálenosti konfigurace od řešení
+.typicky nahrazuje optimalizační kritérium heuristickou kombinací původního opt. kritéria a pokuty za ne-řešení, která je pro danou instanci konkrétní
+typicky nahrazuje optimalizační kritérium pouze odhadem vzdálenosti konfigurace od řešení
+typicky nahrazuje optimalizační kritérium stanovenou konstantní pokutou
+.obvykle obsahuje numerický parametr, který je nutno experimentálně nastavit slouží pouze pri porovnání konfigurací pro přijetí tahu, neužívá se v prípade zhoršujícího tahu
