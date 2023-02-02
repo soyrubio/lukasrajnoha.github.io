@@ -1,77 +1,563 @@
-var otazky = []
-otazky.push(
-{"otazka": "Reprezentace stavu v tabu prohled\u00e1v\u00e1n\u00ed je cesta v grafu. Dlouhodob\u00e1 pam\u011b\u0165 d\u00e1v\u00e1 \u010detnost pou\u017eit\u00ed ka\u017ed\u00e9ho uzlu v kandid\u00e1tn\u00ed cest\u011b. Tah dostane pokutu, jestli\u017ee tato \u010detnost je vy\u0161\u0161\u00ed ne\u017e pr\u016fm\u011br. Dlouhodob\u00e1 pam\u011b\u0165 v\u0161ak obsahuje hash v\u0161ech nav\u0161t\u00edven\u00fdch cest. Pokud se jedn\u00e1 o \u00fapln\u011b novou cestu, tabu je prolomeno. Toto posledn\u00ed opat\u0159en\u00ed je", "odpovedi": {"0": "diverzifikace", "1": "intenzifikace", "2": "Aspirace"}, "spravne": {"0": 1, "1": 0, "2": 1}});
-otazky.push(
-{"otazka": "Reprezentace stavu v tabu prohled\u00e1v\u00e1n\u00ed je hamiltonova kru\u017enice v grafu. Tah je dvojz\u00e1m\u011bna na hran\u00e1ch (odebereme z kru\u017enice dv\u011b hrany a p\u0159id\u00e1me dv\u011b jin\u00e9 tak, aby v\u00fdsledek byla op\u011bt hamiltonova kru\u017enice).  Uva\u017eujeme, \u017ee jako tabu atribut pou\u017eijeme a) v\u00fdslednou dvojici hran, b) celou z\u00e1m\u011bnu (ob\u011b dvojice). Mo\u017enost a)", "odpovedi": {"0": "d\u00e1 v\u011bt\u0161\u00ed diverzifikaci", "1": "d\u00e1 v\u011bt\u0161\u00ed intenzifikaci", "2": "v\u00edce omez\u00ed aktu\u00e1ln\u00ed okol\u00ed"}, "spravne": {"0": 1, "1": 0, "2": 1}});
-otazky.push(
-{"otazka": "Typick\u00e1 \u00faloha aspira\u010dn\u00edch krit\u00e9ri\u00ed je", "odpovedi": {"0": "diverzifikace", "1": "intenzifikace", "2": "omezen\u00ed okol\u00ed"}, "spravne": {"0": 0, "1": 1, "2": 0}});
-otazky.push(
-{"otazka": "Tabu prohled\u00e1v\u00e1n\u00ed konverguje velmi pomalu, i kdy\u017e s dobr\u00fdmi v\u00fdsledky. K n\u00e1prav\u011b", "odpovedi": {"0": "p\u0159id\u00e1me aspira\u010dn\u00ed krit\u00e9rium, spu\u0161t\u011bn\u00e9 dosud nejlep\u0161\u00edm \u0159e\u0161en\u00edm", "1": "p\u0159id\u00e1me aspira\u010dn\u00ed krit\u00e9rium, spu\u0161t\u011bn\u00e9 malou frekvenc\u00ed atribut\u016f tahu", "2": "k optimaliza\u010dn\u00edmu krit\u00e9riu p\u0159id\u00e1me odm\u011bnu za malou frekvenci atribut\u016f"}, "spravne": {"0": 1, "1": 0, "2": 0}});
-otazky.push(
-{"otazka": "Tabu prohled\u00e1v\u00e1n\u00ed \u010dasto kon\u010d\u00ed v lok\u00e1ln\u00edm optimu. K n\u00e1prav\u011b", "odpovedi": {"0": "zkr\u00e1t\u00edme tabu lh\u016ftu", "1": "prodlou\u017e\u00edme tabu lh\u016ftu", "2": "p\u0159id\u00e1me aspira\u010dn\u00ed krit\u00e9rium, spou\u0161t\u011bn\u00e9 malou frekvenc\u00ed atribut\u016f tahu", "3": "k optimaliza\u010dn\u00edmu krit\u00e9riu p\u0159id\u00e1me odm\u011bnu za malou frekvenci atribut\u016f tahu", "4": "p\u0159i detekci uv\u00e1znut\u00ed, spust\u00edme v\u00fdpo\u010det znovu od nejlep\u0161\u00edho dosa\u017een\u00e9ho \u0159e\u0161en\u00ed", "5": "p\u0159i detekci uv\u00e1znut\u00ed, spust\u00edme v\u00fdpo\u010det znovu od n\u00e1hodn\u00e9ho \u0159e\u0161en\u00ed"}, "spravne": {"0": 0, "1": 1, "2": 1, "3": 1, "4": 0, "5": 1}});
-otazky.push(
-{"otazka": "Metoda prohled\u00e1v\u00e1n\u00ed okol\u00ed v tabu prohled\u00e1v\u00e1n\u00ed je", "odpovedi": {"0": "prv\u00e9 zlep\u0161en\u00ed nebo akceptovateln\u00e9 zhor\u0161en\u00ed", "1": "pouze nejlep\u0161\u00ed"}, "spravne": {"0": 0, "1": 0}});
-otazky.push(
-{"otazka": "Tabu prohled\u00e1v\u00e1n\u00ed pou\u017e\u00edv\u00e1 p\u0159i transformaci metodu", "odpovedi": {"0": "pouze nejlep\u0161\u00ed", "1": "prv\u00e9 zlep\u0161en\u00ed", "2": "prv\u00e9 zlep\u0161en\u00ed   zhor\u0161en\u00ed", "3": "nejlep\u0161\u00ed nejd\u0159\u00edve"}, "spravne": {"0": 1, "1": 0, "2": 0, "3": 0}});
-otazky.push(
-{"otazka": "Evolu\u010dn\u00ed programov\u00e1n\u00ed pracuje nad", "odpovedi": {"0": "stromovou reprezentac\u00ed programu", "1": "reprezentac\u00ed automatu", "2": "line\u00e1rn\u00ed reprezentac\u00ed strojov\u00e9ho k\u00f3du", "3": "orientovan\u00fdm acyklick\u00fdm grafem datov\u00fdch z\u00e1vislost\u00ed"}, "spravne": {"0": 0, "1": 1, "2": 0, "3": 0}});
-otazky.push(
-{"otazka": "Evolu\u010dn\u00ed strategie pracuje nad reprezentac\u00ed", "odpovedi": {"0": "vektoru re\u00e1ln\u00fdch \u010d\u00edsel a odchylek", "1": "rozkladov\u00e9ho stromu v\u00fdrazu", "2": "bin\u00e1rn\u00edho \u0159et\u011bzu", "3": "Automatu"}, "spravne": {"0": 1, "1": 0, "2": 0, "3": 0}});
-otazky.push(
-{"otazka": "Podle teorie stavebn\u00edch blok\u016f 2023", "odpovedi": {"0": "slo\u017eit\u011bj\u0161\u00ed sch\u00e9mata (vy\u0161\u0161\u00edho \u0159\u00e1du) p\u0159e\u017e\u00edvaj\u00ed l\u00e9pe", "1": "sch\u00e9mata, jejich\u017e prom\u011bnn\u00e9 jsou rozpt\u00fdleny po cel\u00e9m genotypu, p\u0159e\u017e\u00edvaj\u00ed h\u016f\u0159e", "2": "mutace zhor\u0161uje p\u0159e\u017e\u00edv\u00e1n\u00ed v\u0161ech sch\u00e9mat (i kdy\u017e ne v\u0161ech stejn\u011b)", "3": "uva\u017eovan\u00e9 jednobodov\u00e9 k\u0159\u00ed\u017een\u00ed m\u00e1 za n\u00e1sledek z\u00e1vislost p\u0159e\u017e\u00edv\u00e1n\u00ed na d\u00e9lce sch\u00e9matu"}, "spravne": {"0": 0, "1": 1, "2": 1, "3": 1}});
-otazky.push(
-{"otazka": "Genetick\u00e9 programov\u00e1n\u00ed pracuje nad reprezentac\u00ed", "odpovedi": {"0": "vektoru re\u00e1ln\u00fdch \u010d\u00edsel", "1": "rozkladu stromu", "2": "bin\u00e1rn\u00edho \u0159et\u011bzce", "3": "Automatu"}, "spravne": {"0": 0, "1": 1, "2": 0, "3": 0}});
-otazky.push(
-{"otazka": "M\u00e1te experiment\u00e1ln\u011b vyhodnotit, zda algoritmus, kter\u00fd automaticky udr\u017euje \u0159\u00edzen\u00ed \u00fadr\u017eby selek\u010dn\u00ed tlak v genetick\u00e9m algoritmu, pracuje uspokojiv\u011b. Provedete n\u00e1sleduj\u00edc\u00ed:", "odpovedi": {"0": "Budete m\u011b\u0159it \u010detnost mutace v z\u00e1vislosti na pom\u011brn\u00e9 zdatnosti.", "1": "Budete m\u011b\u0159it \u010detnost v\u00fdb\u011bru (selekce) v z\u00e1vislosti na pom\u011brn\u00e9 zdatnosti.", "2": "Pro ka\u017edou velikost instance zvol\u00edte jednu instanci.", "3": "Zvol\u00edte jednu velikost instance a pou\u017eijete instance rozd\u00edln\u00e9 obt\u00ed\u017enosti."}, "spravne": {"0": 0, "1": 1, "2": 0, "3": 0}});
-otazky.push(
-{"otazka": "Genetick\u00fd algoritmus tvo\u0159\u00ed novou generaci stylem u+l, tj. ke generaci o u jedinc\u00edch se p\u0159id\u00e1 l nov\u00fdch a z celku se vybere op\u011bt u jedinc\u016f. Pro u = l = 1 je tento algoritmus vlastn\u011b 2023", "odpovedi": {"0": "metodou pouze nejlep\u0161\u00ed", "1": "metodou prv\u00e9 zlep\u0161en\u00ed", "2": "n\u00e1hodn\u00e1 proch\u00e1zka"}, "spravne": {"0": 0, "1": 1, "2": 0}});
-otazky.push(
-{"otazka": "M\u00e1te genetick\u00fd algoritmus a svou teorii ohledn\u011b vlastnost\u00ed instance, jak ji ov\u011b\u0159\u00edte?", "odpovedi": {"0": "Vygeneruji instance s danou vlastnost\u00ed a nad nimi spust\u00edm genetick\u00fd algoritmus", "1": "Algoritmus spust\u00edm opakovan\u011b nad instancemi", "2": "Vygeneruji jak mal\u00e9, tak velk\u00e9 instance a nad nimi spust\u00edm algoritmus"}, "spravne": {"0": 0, "1": 1, "2": 1}});
-otazky.push(
-{"otazka": "V genetick\u00e9m algoritmu je t\u0159eba urychlit konvergenci. Mo\u017enost\u00ed je upravit pravd\u011bpodobnost mutace nebo zv\u00fd\u0161it selek\u010dn\u00ed tlak. Plat\u00ed:", "odpovedi": {"0": "p\u0159ednostn\u011b zv\u00fd\u0161\u00edme selek\u010dn\u00ed tlak, pracujeme s minim\u00e1ln\u00ed pot\u0159ebnou mutac\u00ed", "1": "p\u0159ednostn\u011b zv\u00fd\u0161\u00edme pravd\u011bpodobnost mutace", "2": "pokud zv\u00fd\u0161\u00edme selek\u010dn\u00ed tlak, m\u016f\u017ee b\u00fdt pot\u0159eba o n\u011bco zv\u00fd\u0161it i pravd\u011bpodobnost mutace, abychom se vyhnuli divergenci", "3": "zm\u011bna selek\u010dn\u00edho mechanismu nem\u00e1 v\u00fdznamn\u00fd vliv, pokud zachov\u00e1me selek\u010dn\u00ed tlak"}, "spravne": {"0": 1, "1": 0, "2": 0, "3": 1}});
-otazky.push(
-{"otazka": "Algoritmus, kter\u00fd m\u00e1 za b\u011bhu upravovat selek\u010dn\u00ed tlak v genetick\u00e9m algoritmu s v\u00fdb\u011brem ruletou, m\u016f\u017ee p\u0159\u00edmo nastavovat", "odpovedi": {"0": "konstantn\u00ed p\u0159evod ranku (po\u0159ad\u00ed zdatnosti) na pravd\u011bpodobnost v\u00fdb\u011bru", "1": "konstanty line\u00e1rn\u00edho \u0161k\u00e1lov\u00e1n\u00ed", "2": "pravd\u011bpodobnost aplikace oper\u00e1toru \u201ecut and splice\u201c"}, "spravne": {"0": 1, "1": 1, "2": 0}});
-otazky.push(
-{"otazka": "Volba selek\u010dn\u00edho tlaku v genetick\u00fdch algoritmech", "odpovedi": {"0": "je omezena hrozbou divergence p\u0159i mal\u00e9m selek\u010dn\u00edm tlaku", "1": "z\u00e1vis\u00ed na obt\u00ed\u017enosti instance, obt\u00ed\u017en\u011bj\u0161\u00ed instance vy\u017eaduj\u00ed pomalej\u0161\u00ed konvergenci", "2": "m\u016f\u017ee vy\u017eadovat odpov\u00eddaj\u00edc\u00ed nastaven\u00ed pravd\u011bpodobnosti funkce"}, "spravne": {"0": 1, "1": 1, "2": 1}});
-otazky.push(
-{"otazka": "Kdy\u017e zv\u00fd\u0161\u00edme selek\u010dn\u00ed tlak, zv\u00fd\u0161\u00ed se intenzifikace?", "odpovedi": {"0": "Ano", "1": "Ne"}, "spravne": {"0": 1, "1": 0}});
-otazky.push(
-{"otazka": "Zv\u00fd\u0161en\u00ed selek\u010dn\u00edho tlaku m\u016f\u017ee zp\u016fsobit", "odpovedi": {"0": "degeneraci", "1": "zrychlen\u00ed konvergence", "2": "divergenci", "3": "ztr\u00e1tu diverzity"}, "spravne": {"0": 1, "1": 1, "2": 0, "3": 1}});
-otazky.push(
-{"otazka": "Zm\u011bna parametr\u016f line\u00e1rn\u00edho \u0161k\u00e1lov\u00e1n\u00ed, kter\u00e1 m\u00e1 za n\u00e1sledek zv\u011bt\u0161en\u00ed pom\u011bru zdatnosti nejlep\u0161\u00edho a nejhor\u0161\u00edho jedince v genetick\u00fdch algoritmech zp\u016fsob\u00ed diverzifikaci", "odpovedi": {"0": "ano", "1": "ne \u2013 zp\u016fsob\u00ed intenzifikaci, proto\u017ee slab\u0161\u00ed odpadnou", "2": "Zv\u00fd\u0161en\u00ed mutace m\u016f\u017ee zp\u016fsobit", "3": "degeneraci", "4": "zrychlen\u00ed konvergence", "5": "divergenci", "6": "ztr\u00e1tu diverzity", "7": "zv\u00fd\u0161enie intenzifik\u00e1cie", "8": "zv\u00fd\u0161enie diverzity"}, "spravne": {"0": 0, "1": 1, "2": 0, "3": 0, "4": 0, "5": 1, "6": 0, "7": 0, "8": 1}});
-otazky.push(
-{"otazka": "Zmen\u0161enie turnaja", "odpovedi": {"0": "Zni\u017euje intenzifikaci", "1": "Nezvy\u0161uje selek\u010dn\u00fd tlak"}, "spravne": {"0": 1, "1": 1}});
-otazky.push(
-{"otazka": "Genetick\u00e9 oper\u00e1tory Fast Messy GA algoritmu pracuj\u00ed nad", "odpovedi": {"0": "Genetick\u00e9 oper\u00e1tory Fast Messy GA algoritmu pracuj\u00ed nad", "1": "reprezentac\u00ed individua", "2": "zdatnost\u00ed individua", "3": "mno\u017einami hodnot gen\u016f", "4": "reprezentac\u00ed individua, kde n\u011bkter\u00e9 geny nejsou ohodnoceny a n\u011bkter\u00e9 jsou ohodnoceny v\u00edckr\u00e1t"}, "spravne": {"0": 0, "1": 0, "2": 0, "3": 1, "4": 1}});
-otazky.push(
-{"otazka": "Genetick\u00e9 oper\u00e1tory Fast Messy GA algoritmu pracuj\u00ed s 2023", "odpovedi": {"0": "reprezentac\u00ed individua", "1": "podmno\u017einami gen\u016f", "2": "fenotypem individua", "3": "zdatnost\u00ed individua"}, "spravne": {"0": 0, "1": 1, "2": 0, "3": 0}});
-otazky.push(
-{"otazka": "Z\u00e1kladn\u00ed metodou vyhodnocen\u00ed, se kterou pracuje Fast Messy genetick\u00fd algoritmus, je", "odpovedi": {"0": "stanoven\u00ed fenotypu p\u0159\u00edmo z hodnot gen\u016f dan\u00e9ho jedince a n\u00e1sledn\u00fd v\u00fdpo\u010det zdatnosti", "1": "v\u00fdpo\u010det odli\u0161nosti genotypu jedince od referen\u010dn\u00edho jedince", "2": "zalo\u017eena na pr\u016fm\u011brn\u00e9 d\u00e9lce fragmentu v dan\u00e9 generaci", "3": "dosazen\u00ed hodnot fragment\u016f do referen\u010dn\u00edho jedince a v\u00fdpo\u010det jeho zdatnosti"}, "spravne": {"0": 0, "1": 0, "2": 0, "3": 1}});
-otazky.push(
-{"otazka": "Stavebn\u00ed bloky ve Fast Messy GA se generuj\u00ed", "odpovedi": {"0": "jako podmno\u017einy ohodnocen\u00fdch gen\u016f zadan\u00e9 d\u00e9lky", "1": "jako reprezentace po\u010d\u00e1te\u010dn\u00ed populace", "2": "jako fenotyp individua", "3": "jako podmno\u017einy gen\u016f zadan\u00e9ho referen\u010dn\u00edho individua"}, "spravne": {"0": 1, "1": 0, "2": 0, "3": 0}});
-otazky.push(
-{"otazka": "Vn\u011bj\u0161\u00ed cyklus fmGA postupn\u011b zvy\u0161uje", "odpovedi": {"0": "slo\u017eitost referen\u010dn\u00edho individua", "1": "c\u00edlovou velikost fragment\u016f po generov\u00e1n\u00ed", "2": "d\u00e9lku referen\u010dn\u00edho individua", "3": "selek\u010dn\u00ed tlak"}, "spravne": {"0": 0, "1": 1, "2": 0, "3": 0}});
-otazky.push(
-{"otazka": "Referen\u010dn\u00ed jedinec v fmGA", "odpovedi": {"0": "slou\u017e\u00ed pro vyhodnocen\u00ed zdatnosti", "1": "slou\u017e\u00ed pro konstrukci stochastick\u00e9ho modelu", "2": "p\u0159i pou\u017eit\u00ed, jeho prom\u011bnn\u00e9 nahrazuj\u00ed prom\u011bnn\u00e9 fragment\u016f genetick\u00e9 informace", "3": "p\u0159i pou\u017eit\u00ed, jeho prom\u011bnn\u00e9 jsou nahrazov\u00e1ny prom\u011bnn\u00fdmi fragment\u016f genetick\u00e9 informace"}, "spravne": {"0": 1, "1": 0, "2": 0, "3": 1}});
-otazky.push(
-{"otazka": "Vyhodnocen\u00ed zdatnosti ve Fast Messy GA algoritmu je zalo\u017eeno na: 2023", "odpovedi": {"0": "reprezentaci individua", "1": "v\u00fdpo\u010dtu, kter\u00fd pomoc\u00ed dal\u0161\u00edch informac\u00ed vr\u00e1t\u00ed zdatnost libovoln\u00e9 podmno\u017einy gen\u016f", "2": "fenotypu individua", "3": "pou\u017eit\u00ed referen\u010dn\u00edho individua"}, "spravne": {"0": 0, "1": 1, "2": 0, "3": 1}});
-otazky.push(
-{"otazka": "M\u00e1te experiment\u00e1ln\u011b vyhodnotit, zda chov\u00e1n\u00ed algoritmu, kter\u00fd automaticky nastavuje po\u010d\u00e1te\u010dn\u00ed teplotu simulovan\u00e9ho ochlazov\u00e1n\u00ed, odpov\u00edd\u00e1 teorii, kterou jste vymysleli, a kter\u00e1 zahrnuje n\u011bkolik parametr\u016f instance. Zaj\u00edm\u00e1 v\u00e1s tak\u00e9, zda tyto parametry sta\u010d\u00ed k charakterizaci instance z hlediska pr\u00e1ce algoritmu.", "odpovedi": {"0": "Pou\u017eijete vygenerovan\u00e9 instance se stejn\u00fdmi hodnotami parametr\u016f, o kter\u00fdch se hovo\u0159\u00ed ve Va\u0161\u00ed teorii, ale r\u016fzn\u00e9 velikosti.", "1": "Pou\u017eijete vygenerovan\u00e9 instance s r\u016fzn\u00fdmi hodnotami parametr\u016f, o kter\u00fdch se hovo\u0159\u00ed ve Va\u0161\u00ed teorii.", "2": "Pou\u017eijete reprezentativn\u00ed mix praktick\u00fdch instanc\u00ed.", "3": "V\u00fdpo\u010det spust\u00edte opakovan\u011b pro ka\u017edou instanci."}, "spravne": {"0": 1, "1": 1, "2": 0, "3": 1}});
-otazky.push(
-{"otazka": "M\u00e1te experiment\u00e1ln\u011b vyhodnotit, zda algoritmus, kter\u00fd automaticky nastavuje po\u010d\u00e1te\u010dn\u00ed teplotu simulovan\u00e9ho ochlazov\u00e1n\u00ed, pracuje uspokojiv\u011b.", "odpovedi": {"0": "Zvol\u00edte jeden parametr instanc\u00ed, o kter\u00fdch se domn\u00edv\u00e1te, \u017ee na po\u010d\u00e1te\u010dn\u00ed teplotu m\u00e1 vliv, a zkonstruujete zku\u0161ebn\u00ed instance.", "1": "Zvol\u00edte velikost instance, na kter\u00e9 budete experiment prov\u00e1d\u011bt.", "2": "Pou\u017eijete instance s rozd\u00edlnou hloubkou lok\u00e1ln\u00edch minim.", "3": "Budete sledovat, zda rychlost ochlazov\u00e1n\u00ed v algoritmu d\u00e1v\u00e1 p\u0159im\u011b\u0159en\u011b rychlou konvergenci pro nastavenou teplotu."}, "spravne": {"0": 0, "1": 0, "2": 1, "3": 1}});
-otazky.push(
-{"otazka": "Heuristika, kter\u00e1 nastavuje parametry simulovan\u00e9ho ochlazov\u00e1n\u00ed", "odpovedi": {"0": "v\u017edy bude br\u00e1t v \u00favahu rozsah optimaliza\u010dn\u00edho krit\u00e9ria nebo jej normovat", "1": "pokud zjist\u00ed hloubku lok\u00e1ln\u00edch minim, d\u00e1 se tato hodnota vyu\u017e\u00edt", "2": "efekt, dosa\u017een\u00fd manipulac\u00ed s hloubkou ekvilibria, se d\u00e1 dos\u00e1hnout manipulac\u00ed s koeficientem ochlazov\u00e1n\u00ed"}, "spravne": {"0": 1, "1": 1, "2": 1}});
-otazky.push(
-{"otazka": "Volba po\u010d\u00e1te\u010dn\u00ed teploty v simulovan\u00e9m ochlazov\u00e1n\u00ed", "odpovedi": {"0": "pro dosa\u017een\u00ed nejlep\u0161\u00edho v\u00fdsledku, m\u016f\u017ee vy\u017eadovat odpov\u00eddaj\u00edc\u00ed volbu koeficientu ochlazov\u00e1n\u00ed", "1": "z\u00e1vis\u00ed na obt\u00ed\u017enosti konkr\u00e9tn\u00ed instance", "2": "z\u00e1vis\u00ed na rozsahu optimaliza\u010dn\u00edho krit\u00e9ria dan\u00e9 instance", "3": "Koncov\u00e1 teplota v simulovan\u00e9m ochlazov\u00e1n\u00ed 2023", "4": "je-li dost n\u00edzk\u00e1, ur\u010duje, jak velk\u00e1 \u010d\u00e1st stavov\u00e9ho prostoru bude prohled\u00e1v\u00e1na", "5": "je-li p\u0159\u00edli\u0161 vysok\u00e1, omezuje prohled\u00e1vanou \u010d\u00e1st stavov\u00e9ho prostoru", "6": "v\u017edy mus\u00ed z\u016fstat konstantn\u00ed, pokud se m\u011bn\u00ed po\u010d\u00e1te\u010dn\u00ed teplota", "7": "d\u00e1 se s v\u00fdhodou ur\u010dovat za b\u011bhu sledov\u00e1n\u00edm konvergence"}, "spravne": {"0": 1, "1": 1, "2": 1, "3": 0, "4": 0, "5": 1, "6": 0, "7": 1}});
-otazky.push(
-{"otazka": "Jak\u00e1 strategie se pou\u017e\u00edv\u00e1 pro v\u00fdb\u011br souseda u simulovan\u00e9ho ochlazov\u00e1n\u00ed?", "odpovedi": {"0": "pouze nejlep\u0161\u00ed", "1": "prv\u00e9 zlep\u0161en\u00ed", "2": "prv\u00e9 zlep\u0161en\u00ed nebo p\u0159\u00edpustn\u00e9 zhor\u0161en\u00ed", "3": "nejlep\u0161\u00ed nejd\u0159\u00edve"}, "spravne": {"0": 0, "1": 0, "2": 1, "3": 0}});
-otazky.push(
-{"otazka": "Zv\u00fd\u0161en\u00ed po\u010dtu iterac\u00ed p\u0159i konstantn\u00ed teplot\u011b u SA (equilibrium), odpov\u00edd\u00e1:", "odpovedi": {"0": "zv\u00fd\u0161en\u00ed koeficientu ochlazov\u00e1n\u00ed", "1": "sn\u00ed\u017een\u00ed koeficientu ochlazov\u00e1n\u00ed", "2": "vztah nelze vyj\u00e1d\u0159it"}, "spravne": {"0": 1, "1": 0, "2": 0}});
-otazky.push(
-{"otazka": "Pro praktickou aplikaci kombinatorick\u00e9ho optimaliza\u010dn\u00edho probl\u00e9mu jste zvolili simulovan\u00e9 ochlazov\u00e1n\u00ed bez adapta\u010dn\u00edch mechanism\u016f a s pevnou hodnotou koncov\u00e9 teploty. Na v\u011bt\u0161in\u011b instanc\u00ed se optimaliza\u010dn\u00ed krit\u00e9rium nejd\u0159\u00edve pon\u011bkud zhor\u0161uje a p\u0159itom vykazuje n\u00e1hodn\u00e9 zm\u011bny, posl\u00e9ze se zlep\u0161uje a n\u00e1hodn\u00e9 zm\u011bny se zmen\u0161uj\u00ed. Na p\u0159ev\u00e1\u017en\u00e9 \u010d\u00e1sti instanc\u00ed konverguje ke stabiln\u00edmu a dobr\u00e9mu \u0159e\u0161en\u00ed. Na zbyl\u00fdch st\u00e1le zlep\u0161uje opt. krit\u00e9rium a n\u00e1hodn\u00e9 zm\u011bny se zmen\u0161uj\u00ed, ale optimaliza\u010dn\u00ed krit\u00e9rium se nedostane ani ke startovac\u00ed hodnot\u011b. Na vin\u011b je:", "odpovedi": {"0": "p\u0159\u00edli\u0161 vysok\u00e1 hodnota po\u010d\u00e1te\u010dn\u00ed teploty", "1": "p\u0159\u00edli\u0161 n\u00edzk\u00e1 hodnota koncov\u00e9 teploty", "2": "podm\u00ednka ukon\u010den\u00ed, kter\u00e1 nedetekuje konvergenci", "3": "p\u0159\u00edli\u0161 n\u00edzk\u00e1 hodnota koeficientu ochlazov\u00e1n\u00ed"}, "spravne": {"0": 0, "1": 0, "2": 1, "3": 0}});
-otazky.push(
-{"otazka": "M\u00e1te experiment\u00e1ln\u011b vyhodnotit, zda randomizovan\u00fd pl\u00e1novac\u00ed algoritmus, kter\u00fd chcete nasadit do aplikace \u0159\u00edzen\u00ed \u00fadr\u017eby, pracuje pro toto nasazen\u00ed uspokojiv\u011b. Obt\u00ed\u017enost instanc\u00ed \u0159e\u0161en\u00fdch v ostr\u00e9m nasazen\u00ed je obt\u00ed\u017en\u00e9 odhadnout na z\u00e1klad\u011b zn\u00e1m\u00fdch charakteristik.", "odpovedi": {"0": "Pou\u017eijete p\u0159ednostn\u011b instance \u201enachytan\u00e9\u201c p\u0159i p\u0159edchoz\u00edm manu\u00e1ln\u00edm \u0159\u00edzen\u00ed.", "1": "Pou\u017eijete p\u0159ednostn\u011b instance vygenerovan\u00e9 se zn\u00e1m\u00fdmi vlastnostmi.", "2": "Pou\u017eijete v\u011bt\u0161\u00ed po\u010det lehk\u00fdch instanc\u00ed k urychlen\u00ed.", "3": "V\u00fdpo\u010det spust\u00edte opakovan\u011b pro ka\u017edou instanci."}, "spravne": {"0": 1, "1": 0, "2": 0, "3": 1}});
-otazky.push(
-{"otazka": "Srovn\u00e1v\u00e1te dva deterministick\u00e9 algoritmy A a B, za \u00fa\u010delem teoretick\u00e9ho pozn\u00e1n\u00ed z\u00e1vislosti po\u010dtu krok\u016f na velikosti instance. Pro algoritmus B, r\u016fzn\u00e9 instance jedn\u00e9 velikosti vykazuj\u00ed velk\u00fd rozptyl v po\u010dtu krok\u016f. 2023", "odpovedi": {"0": "Po\u010det krok\u016f pro algoritmus B zpr\u016fm\u011brujete, proto\u017ee rozptyl nen\u00ed sou\u010d\u00e1st\u00ed hodnocen\u00ed.", "1": "Zjist\u00edte statistick\u00e9 rozlo\u017een\u00ed po\u010dtu krok\u016f a pokud je symetrick\u00e9, pou\u017eijete pr\u016fm\u011br.", "2": "Zjist\u00edte statistick\u00e9 rozlo\u017een\u00ed po\u010dtu krok\u016f pro oba algoritmy a vyhodnot\u00edte, zda se p\u0159ekr\u00fdvaj\u00ed a jak mnoho.", "3": "Pokus\u00edte se zjistit, jak\u00e1 dal\u0161\u00ed charakteristika instanc\u00ed m\u00e1 vliv na po\u010det krok\u016f."}, "spravne": {"0": 0, "1": 1, "2": 1, "3": 1}});
-otazky.push(
-{"otazka": "Zji\u0161\u0165ujete vliv parametru randomizovan\u00e9 lok\u00e1ln\u00ed iterativn\u00ed heuristiky na kvalitu v\u00fdsledku. Provedli jste jeden b\u011bh algoritmu na v\u00edce instanc\u00edch pro ka\u017edou hodnotu parametru. V\u00fdsledn\u00e1 z\u00e1vislost je zcela chaotick\u00e1, p\u0159esto\u017ee by k tomu tak b\u00fdt nem\u011blo.", "odpovedi": {"0": "Je to d\u016fkaz, \u017ee kvalita na parametru nez\u00e1vis\u00ed.", "1": "Pou\u017eijete vizualizaci v\u00fdvoje ceny, abyste zjistili, zda jin\u00e9 parametry nejsou zcela nevhodn\u011b nastaveny.", "2": "Algoritmus spou\u0161t\u00edte opakovan\u011b na ka\u017ed\u00e9 instanci.", "3": "Pokud to nen\u00ed dom\u00e1c\u00ed \u00fakol, pou\u017eijete statistick\u00e9 testy v\u00fdznamnosti, abyste zjistili pot\u0159ebn\u00fd po\u010det opakov\u00e1n\u00ed."}, "spravne": {"0": 0, "1": 1, "2": 1, "3": 1}});
+var otazky = [];
+otazky.push({
+    otazka: "Reprezentace stavu v tabu prohledávání je cesta v grafu. Dlouhodobá paměť dává četnost použití každého uzlu v kandidátní cestě. Tah dostane pokutu, jestliže tato četnost je vyšší než průměr. Dlouhodobá paměť však obsahuje hash všech navštívených cest. Pokud se jedná o úplně novou cestu, tabu je prolomeno. Toto poslední opatření je",
+    odpovedi: {
+        1: "diverzifikace",
+        2: "intenzifikace",
+        3: "Aspirace",
+    },
+    spravne: {
+        1: 1,
+        2: 0,
+        3: 1,
+    },
+});
+otazky.push({
+    otazka: "Reprezentace stavu v tabu prohledávání je hamiltonova kružnice v grafu. Tah je dvojzáměna na hranách (odebereme z kružnice dvě hrany a přidáme dvě jiné tak, aby výsledek byla opět hamiltonova kružnice).  Uvažujeme, že jako tabu atribut použijeme a) výslednou dvojici hran, b) celou záměnu (obě dvojice). Možnost a)",
+    odpovedi: {
+        1: "dá větší diverzifikaci",
+        2: "dá větší intenzifikaci",
+        3: "více omezí aktuální okolí",
+    },
+    spravne: {
+        1: 1,
+        2: 0,
+        3: 1,
+    },
+});
+otazky.push({
+    otazka: "Typická úloha aspiračních kritérií je",
+    odpovedi: {
+        1: "diverzifikace",
+        2: "intenzifikace",
+        3: "omezení okolí",
+    },
+    spravne: {
+        1: 0,
+        2: 1,
+        3: 0,
+    },
+});
+otazky.push({
+    otazka: "Tabu prohledávání konverguje velmi pomalu, i když s dobrými výsledky. K nápravě",
+    odpovedi: {
+        1: "přidáme aspirační kritérium, spuštěné dosud nejlepším řešením",
+        2: "přidáme aspirační kritérium, spuštěné malou frekvencí atributů tahu",
+        3: "k optimalizačnímu kritériu přidáme odměnu za malou frekvenci atributů",
+    },
+    spravne: {
+        1: 1,
+        2: 0,
+        3: 0,
+    },
+});
+otazky.push({
+    otazka: "Tabu prohledávání často končí v lokálním optimu. K nápravě",
+    odpovedi: {
+        1: "zkrátíme tabu lhůtu",
+        2: "prodloužíme tabu lhůtu",
+        3: "přidáme aspirační kritérium, spouštěné malou frekvencí atributů tahu",
+        4: "k optimalizačnímu kritériu přidáme odměnu za malou frekvenci atributů tahu",
+        5: "při detekci uváznutí, spustíme výpočet znovu od nejlepšího dosaženého řešení",
+        6: "při detekci uváznutí, spustíme výpočet znovu od náhodného řešení",
+    },
+    spravne: {
+        1: 0,
+        2: 1,
+        3: 1,
+        4: 1,
+        5: 0,
+        6: 1,
+    },
+});
+otazky.push({
+    otazka: "Metoda prohledávání okolí v tabu prohledávání je",
+    odpovedi: {
+        1: "prvé zlepšení nebo akceptovatelné zhoršení",
+        2: "pouze nejlepší",
+    },
+    spravne: {
+        1: 0,
+        2: 0,
+    },
+});
+otazky.push({
+    otazka: "Tabu prohledávání používá při transformaci metodu",
+    odpovedi: {
+        1: "pouze nejlepší",
+        2: "prvé zlepšení",
+        3: "prvé zlepšení   zhoršení",
+        4: "nejlepší nejdříve",
+    },
+    spravne: {
+        1: 1,
+        2: 0,
+        3: 0,
+        4: 0,
+    },
+});
+otazky.push({
+    otazka: "Evoluční programování pracuje nad",
+    odpovedi: {
+        1: "stromovou reprezentací programu",
+        2: "reprezentací automatu",
+        3: "lineární reprezentací strojového kódu",
+        4: "orientovaným acyklickým grafem datových závislostí",
+    },
+    spravne: {
+        1: 0,
+        2: 1,
+        3: 0,
+        4: 0,
+    },
+});
+otazky.push({
+    otazka: "Evoluční strategie pracuje nad reprezentací",
+    odpovedi: {
+        1: "vektoru reálných čísel a odchylek",
+        2: "rozkladového stromu výrazu",
+        3: "binárního řetězu",
+        4: "Automatu",
+    },
+    spravne: {
+        1: 1,
+        2: 0,
+        3: 0,
+        4: 0,
+    },
+});
+otazky.push({
+    otazka: "Podle teorie stavebních bloků 2023",
+    odpovedi: {
+        1: "složitější schémata (vyššího řádu) přežívají lépe",
+        2: "schémata, jejichž proměnné jsou rozptýleny po celém genotypu, přežívají hůře",
+        3: "mutace zhoršuje přežívání všech schémat (i když ne všech stejně)",
+        4: "uvažované jednobodové křížení má za následek závislost přežívání na délce schématu",
+    },
+    spravne: {
+        1: 0,
+        2: 1,
+        3: 1,
+        4: 1,
+    },
+});
+otazky.push({
+    otazka: "Genetické programování pracuje nad reprezentací",
+    odpovedi: {
+        1: "vektoru reálných čísel",
+        2: "rozkladu stromu",
+        3: "binárního řetězce",
+        4: "Automatu",
+    },
+    spravne: {
+        1: 0,
+        2: 1,
+        3: 0,
+        4: 0,
+    },
+});
+otazky.push({
+    otazka: "Máte experimentálně vyhodnotit, zda algoritmus, který automaticky udržuje řízení údržby selekční tlak v genetickém algoritmu, pracuje uspokojivě. Provedete následující:",
+    odpovedi: {
+        1: "Budete měřit četnost mutace v závislosti na poměrné zdatnosti.",
+        2: "Budete měřit četnost výběru (selekce) v závislosti na poměrné zdatnosti.",
+        3: "Pro každou velikost instance zvolíte jednu instanci.",
+        4: "Zvolíte jednu velikost instance a použijete instance rozdílné obtížnosti.",
+    },
+    spravne: {
+        1: 0,
+        2: 1,
+        3: 0,
+        4: 0,
+    },
+});
+otazky.push({
+    otazka: "Genetický algoritmus tvoří novou generaci stylem u+l, tj. ke generaci o u jedincích se přidá l nových a z celku se vybere opět u jedinců. Pro u = l = 1 je tento algoritmus vlastně 2023",
+    odpovedi: {
+        1: "metodou pouze nejlepší",
+        2: "metodou prvé zlepšení",
+        3: "náhodná procházka",
+    },
+    spravne: {
+        1: 0,
+        2: 1,
+        3: 0,
+    },
+});
+otazky.push({
+    otazka: "Máte genetický algoritmus a svou teorii ohledně vlastností instance, jak ji ověříte?",
+    odpovedi: {
+        1: "Vygeneruji instance s danou vlastností a nad nimi spustím genetický algoritmus",
+        2: "Algoritmus spustím opakovaně nad instancemi",
+        3: "Vygeneruji jak malé, tak velké instance a nad nimi spustím algoritmus",
+    },
+    spravne: {
+        1: 0,
+        2: 1,
+        3: 1,
+    },
+});
+otazky.push({
+    otazka: "V genetickém algoritmu je třeba urychlit konvergenci. Možností je upravit pravděpodobnost mutace nebo zvýšit selekční tlak. Platí:",
+    odpovedi: {
+        1: "přednostně zvýšíme selekční tlak, pracujeme s minimální potřebnou mutací",
+        2: "přednostně zvýšíme pravděpodobnost mutace",
+        3: "pokud zvýšíme selekční tlak, může být potřeba o něco zvýšit i pravděpodobnost mutace, abychom se vyhnuli divergenci",
+        4: "změna selekčního mechanismu nemá významný vliv, pokud zachováme selekční tlak",
+    },
+    spravne: {
+        1: 1,
+        2: 0,
+        3: 0,
+        4: 1,
+    },
+});
+otazky.push({
+    otazka: "Algoritmus, který má za běhu upravovat selekční tlak v genetickém algoritmu s výběrem ruletou, může přímo nastavovat",
+    odpovedi: {
+        1: "konstantní převod ranku (pořadí zdatnosti) na pravděpodobnost výběru",
+        2: "konstanty lineárního škálování",
+        3: "pravděpodobnost aplikace operátoru „cut and splice“",
+    },
+    spravne: {
+        1: 1,
+        2: 1,
+        3: 0,
+    },
+});
+otazky.push({
+    otazka: "Volba selekčního tlaku v genetických algoritmech",
+    odpovedi: {
+        1: "je omezena hrozbou divergence při malém selekčním tlaku",
+        2: "závisí na obtížnosti instance, obtížnější instance vyžadují pomalejší konvergenci",
+        3: "může vyžadovat odpovídající nastavení pravděpodobnosti funkce",
+    },
+    spravne: {
+        1: 1,
+        2: 1,
+        3: 1,
+    },
+});
+otazky.push({
+    otazka: "Když zvýšíme selekční tlak, zvýší se intenzifikace?",
+    odpovedi: {
+        1: "Ano",
+        2: "Ne",
+    },
+    spravne: {
+        1: 1,
+        2: 0,
+    },
+});
+otazky.push({
+    otazka: "Zvýšení selekčního tlaku může způsobit",
+    odpovedi: {
+        1: "degeneraci",
+        2: "zrychlení konvergence",
+        3: "divergenci",
+        4: "ztrátu diverzity",
+    },
+    spravne: {
+        1: 1,
+        2: 1,
+        3: 0,
+        4: 1,
+    },
+});
+otazky.push({
+    otazka: "Změna parametrů lineárního škálování, která má za následek zvětšení poměru zdatnosti nejlepšího a nejhoršího jedince v genetických algoritmech způsobí diverzifikaci",
+    odpovedi: {
+        1: "ano",
+        2: "ne – způsobí intenzifikaci, protože slabší odpadnou",
+        3: "Zvýšení mutace může způsobit",
+        4: "degeneraci",
+        5: "zrychlení konvergence",
+        6: "divergenci",
+        7: "ztrátu diverzity",
+        8: "zvýšenie intenzifikácie",
+        9: "zvýšenie diverzity",
+    },
+    spravne: {
+        1: 0,
+        2: 1,
+        3: 0,
+        4: 0,
+        5: 0,
+        6: 1,
+        7: 0,
+        8: 0,
+        9: 1,
+    },
+});
+otazky.push({
+    otazka: "Zmenšenie turnaja",
+    odpovedi: {
+        1: "Znižuje intenzifikaci",
+        2: "Nezvyšuje selekčný tlak",
+    },
+    spravne: {
+        1: 1,
+        2: 1,
+    },
+});
+otazky.push({
+    otazka: "Genetické operátory Fast Messy GA algoritmu pracují nad",
+    odpovedi: {
+        1: "Genetické operátory Fast Messy GA algoritmu pracují nad",
+        2: "reprezentací individua",
+        3: "zdatností individua",
+        4: "množinami hodnot genů",
+        5: "reprezentací individua, kde některé geny nejsou ohodnoceny a některé jsou ohodnoceny víckrát",
+    },
+    spravne: {
+        1: 0,
+        2: 0,
+        3: 0,
+        4: 1,
+        5: 1,
+    },
+});
+otazky.push({
+    otazka: "Genetické operátory Fast Messy GA algoritmu pracují s 2023",
+    odpovedi: {
+        1: "reprezentací individua",
+        2: "podmnožinami genů",
+        3: "fenotypem individua",
+        4: "zdatností individua",
+    },
+    spravne: {
+        1: 0,
+        2: 1,
+        3: 0,
+        4: 0,
+    },
+});
+otazky.push({
+    otazka: "Základní metodou vyhodnocení, se kterou pracuje Fast Messy genetický algoritmus, je",
+    odpovedi: {
+        1: "stanovení fenotypu přímo z hodnot genů daného jedince a následný výpočet zdatnosti",
+        2: "výpočet odlišnosti genotypu jedince od referenčního jedince",
+        3: "založena na průměrné délce fragmentu v dané generaci",
+        4: "dosazení hodnot fragmentů do referenčního jedince a výpočet jeho zdatnosti",
+    },
+    spravne: {
+        1: 0,
+        2: 0,
+        3: 0,
+        4: 1,
+    },
+});
+otazky.push({
+    otazka: "Stavební bloky ve Fast Messy GA se generují",
+    odpovedi: {
+        1: "jako podmnožiny ohodnocených genů zadané délky",
+        2: "jako reprezentace počáteční populace",
+        3: "jako fenotyp individua",
+        4: "jako podmnožiny genů zadaného referenčního individua",
+    },
+    spravne: {
+        1: 1,
+        2: 0,
+        3: 0,
+        4: 0,
+    },
+});
+otazky.push({
+    otazka: "Vnější cyklus fmGA postupně zvyšuje",
+    odpovedi: {
+        1: "složitost referenčního individua",
+        2: "cílovou velikost fragmentů po generování",
+        3: "délku referenčního individua",
+        4: "selekční tlak",
+    },
+    spravne: {
+        1: 0,
+        2: 1,
+        3: 0,
+        4: 0,
+    },
+});
+otazky.push({
+    otazka: "Referenční jedinec v fmGA",
+    odpovedi: {
+        1: "slouží pro vyhodnocení zdatnosti",
+        2: "slouží pro konstrukci stochastického modelu",
+        3: "při použití, jeho proměnné nahrazují proměnné fragmentů genetické informace",
+        4: "při použití, jeho proměnné jsou nahrazovány proměnnými fragmentů genetické informace",
+    },
+    spravne: {
+        1: 1,
+        2: 0,
+        3: 0,
+        4: 1,
+    },
+});
+otazky.push({
+    otazka: "Vyhodnocení zdatnosti ve Fast Messy GA algoritmu je založeno na: 2023",
+    odpovedi: {
+        1: "reprezentaci individua",
+        2: "výpočtu, který pomocí dalších informací vrátí zdatnost libovolné podmnožiny genů",
+        3: "fenotypu individua",
+        4: "použití referenčního individua",
+    },
+    spravne: {
+        1: 0,
+        2: 1,
+        3: 0,
+        4: 1,
+    },
+});
+otazky.push({
+    otazka: "Máte experimentálně vyhodnotit, zda chování algoritmu, který automaticky nastavuje počáteční teplotu simulovaného ochlazování, odpovídá teorii, kterou jste vymysleli, a která zahrnuje několik parametrů instance. Zajímá vás také, zda tyto parametry stačí k charakterizaci instance z hlediska práce algoritmu.",
+    odpovedi: {
+        1: "Použijete vygenerované instance se stejnými hodnotami parametrů, o kterých se hovoří ve Vaší teorii, ale různé velikosti.",
+        2: "Použijete vygenerované instance s různými hodnotami parametrů, o kterých se hovoří ve Vaší teorii.",
+        3: "Použijete reprezentativní mix praktických instancí.",
+        4: "Výpočet spustíte opakovaně pro každou instanci.",
+    },
+    spravne: {
+        1: 1,
+        2: 1,
+        3: 0,
+        4: 1,
+    },
+});
+otazky.push({
+    otazka: "Máte experimentálně vyhodnotit, zda algoritmus, který automaticky nastavuje počáteční teplotu simulovaného ochlazování, pracuje uspokojivě.",
+    odpovedi: {
+        1: "Zvolíte jeden parametr instancí, o kterých se domníváte, že na počáteční teplotu má vliv, a zkonstruujete zkušební instance.",
+        2: "Zvolíte velikost instance, na které budete experiment provádět.",
+        3: "Použijete instance s rozdílnou hloubkou lokálních minim.",
+        4: "Budete sledovat, zda rychlost ochlazování v algoritmu dává přiměřeně rychlou konvergenci pro nastavenou teplotu.",
+    },
+    spravne: {
+        1: 0,
+        2: 0,
+        3: 1,
+        4: 1,
+    },
+});
+otazky.push({
+    otazka: "Heuristika, která nastavuje parametry simulovaného ochlazování",
+    odpovedi: {
+        1: "vždy bude brát v úvahu rozsah optimalizačního kritéria nebo jej normovat",
+        2: "pokud zjistí hloubku lokálních minim, dá se tato hodnota využít",
+        3: "efekt, dosažený manipulací s hloubkou ekvilibria, se dá dosáhnout manipulací s koeficientem ochlazování",
+    },
+    spravne: {
+        1: 1,
+        2: 1,
+        3: 1,
+    },
+});
+otazky.push({
+    otazka: "Volba počáteční teploty v simulovaném ochlazování",
+    odpovedi: {
+        1: "pro dosažení nejlepšího výsledku, může vyžadovat odpovídající volbu koeficientu ochlazování",
+        2: "závisí na obtížnosti konkrétní instance",
+        3: "závisí na rozsahu optimalizačního kritéria dané instance",
+        4: "Koncová teplota v simulovaném ochlazování 2023",
+        5: "je-li dost nízká, určuje, jak velká část stavového prostoru bude prohledávána",
+        6: "je-li příliš vysoká, omezuje prohledávanou část stavového prostoru",
+        7: "vždy musí zůstat konstantní, pokud se mění počáteční teplota",
+        8: "dá se s výhodou určovat za běhu sledováním konvergence",
+    },
+    spravne: {
+        1: 1,
+        2: 1,
+        3: 1,
+        4: 0,
+        5: 0,
+        6: 1,
+        7: 0,
+        8: 1,
+    },
+});
+otazky.push({
+    otazka: "Jaká strategie se používá pro výběr souseda u simulovaného ochlazování?",
+    odpovedi: {
+        1: "pouze nejlepší",
+        2: "prvé zlepšení",
+        3: "prvé zlepšení nebo přípustné zhoršení",
+        4: "nejlepší nejdříve",
+    },
+    spravne: {
+        1: 0,
+        2: 0,
+        3: 1,
+        4: 0,
+    },
+});
+otazky.push({
+    otazka: "Zvýšení počtu iterací při konstantní teplotě u SA (equilibrium), odpovídá:",
+    odpovedi: {
+        1: "zvýšení koeficientu ochlazování",
+        2: "snížení koeficientu ochlazování",
+        3: "vztah nelze vyjádřit",
+    },
+    spravne: {
+        1: 1,
+        2: 0,
+        3: 0,
+    },
+});
+otazky.push({
+    otazka: "Pro praktickou aplikaci kombinatorického optimalizačního problému jste zvolili simulované ochlazování bez adaptačních mechanismů a s pevnou hodnotou koncové teploty. Na většině instancí se optimalizační kritérium nejdříve poněkud zhoršuje a přitom vykazuje náhodné změny, posléze se zlepšuje a náhodné změny se zmenšují. Na převážné části instancí konverguje ke stabilnímu a dobrému řešení. Na zbylých stále zlepšuje opt. kritérium a náhodné změny se zmenšují, ale optimalizační kritérium se nedostane ani ke startovací hodnotě. Na vině je:",
+    odpovedi: {
+        1: "příliš vysoká hodnota počáteční teploty",
+        2: "příliš nízká hodnota koncové teploty",
+        3: "podmínka ukončení, která nedetekuje konvergenci",
+        4: "příliš nízká hodnota koeficientu ochlazování",
+    },
+    spravne: {
+        1: 0,
+        2: 0,
+        3: 1,
+        4: 0,
+    },
+});
+otazky.push({
+    otazka: "Máte experimentálně vyhodnotit, zda randomizovaný plánovací algoritmus, který chcete nasadit do aplikace řízení údržby, pracuje pro toto nasazení uspokojivě. Obtížnost instancí řešených v ostrém nasazení je obtížné odhadnout na základě známých charakteristik.",
+    odpovedi: {
+        1: "Použijete přednostně instance „nachytané“ při předchozím manuálním řízení.",
+        2: "Použijete přednostně instance vygenerované se známými vlastnostmi.",
+        3: "Použijete větší počet lehkých instancí k urychlení.",
+        4: "Výpočet spustíte opakovaně pro každou instanci.",
+    },
+    spravne: {
+        1: 1,
+        2: 0,
+        3: 0,
+        4: 1,
+    },
+});
+otazky.push({
+    otazka: "Srovnáváte dva deterministické algoritmy A a B, za účelem teoretického poznání závislosti počtu kroků na velikosti instance. Pro algoritmus B, různé instance jedné velikosti vykazují velký rozptyl v počtu kroků. 2023",
+    odpovedi: {
+        1: "Počet kroků pro algoritmus B zprůměrujete, protože rozptyl není součástí hodnocení.",
+        2: "Zjistíte statistické rozložení počtu kroků a pokud je symetrické, použijete průměr.",
+        3: "Zjistíte statistické rozložení počtu kroků pro oba algoritmy a vyhodnotíte, zda se překrývají a jak mnoho.",
+        4: "Pokusíte se zjistit, jaká další charakteristika instancí má vliv na počet kroků.",
+    },
+    spravne: {
+        1: 0,
+        2: 1,
+        3: 1,
+        4: 1,
+    },
+});
+otazky.push({
+    otazka: "Zjišťujete vliv parametru randomizované lokální iterativní heuristiky na kvalitu výsledku. Provedli jste jeden běh algoritmu na více instancích pro každou hodnotu parametru. Výsledná závislost je zcela chaotická, přestože by k tomu tak být nemělo.",
+    odpovedi: {
+        1: "Je to důkaz, že kvalita na parametru nezávisí.",
+        2: "Použijete vizualizaci vývoje ceny, abyste zjistili, zda jiné parametry nejsou zcela nevhodně nastaveny.",
+        3: "Algoritmus spouštíte opakovaně na každé instanci.",
+        4: "Pokud to není domácí úkol, použijete statistické testy významnosti, abyste zjistili potřebný počet opakování.",
+    },
+    spravne: {
+        1: 0,
+        2: 1,
+        3: 1,
+        4: 1,
+    },
+});

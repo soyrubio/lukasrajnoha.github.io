@@ -73,7 +73,7 @@
 
             $scope.questionText = questions.otazka;
 
-            if(questions.note) {
+            if (questions.note) {
                 $scope.note = questions.note;
             } else {
                 $scope.note = "";
